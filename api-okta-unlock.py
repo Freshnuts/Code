@@ -11,9 +11,9 @@ print('Enter API Token: ')
 read_token = input()
 
 # Okta API URL
-# unlock_url = "https://fattmerchant.okta.com/api/v1/users/first.last/lifecycle/unlock"
+# unlock_url = "https://redacted.okta.com/api/v1/users/first.last/lifecycle/unlock"
 # list_blocks_url = "https://subdomain.okta.com/api/v1/users/first.last/blocks"
-# deprovisioned_users = 'https://fattmerchant.okta.com/api/v1/users?filter=status eq "DEPROVISIONED"'
+# deprovisioned_users = 'https://redacted.okta.com/api/v1/users?filter=status eq "DEPROVISIONED"'
 
 # Okta API token
 api_token = read_token
@@ -47,7 +47,7 @@ while True:
     if menu_answer == '1':
         print('Unlock User: ')
         unlock_user = input()
-        unlock_url = "https://fattmerchant.okta.com/api/v1/users/" + unlock_user + "/lifecycle/unlock"
+        unlock_url = "https://redacted.okta.com/api/v1/users/" + unlock_user + "/lifecycle/unlock"
         user_unlock_response = requests.post(unlock_url, headers=headers, json=data)
         
         if user_unlock_response.status_code == 200:
@@ -61,7 +61,7 @@ while True:
     elif menu_answer == '2':
         print('Check for locked user: ')
         list_user = input()
-        list_blocks_url = "https://fattmerchant.okta.com/api/v1/users/" + list_user + "/blocks"
+        list_blocks_url = "https://redacted.okta.com/api/v1/users/" + list_user + "/blocks"
         list_blocks_response = requests.get(list_blocks_url, headers=headers, json=data)
         
         if list_blocks_response.status_code == 200:
@@ -83,7 +83,7 @@ while True:
                     SUSPENDED
                     DEPROVISIONED''')
         user_status = input()
-        status_url = 'https://fattmerchant.okta.com/api/v1/users?filter=status eq "' + user_status + '"'
+        status_url = 'https://redacted.okta.com/api/v1/users?filter=status eq "' + user_status + '"'
         status_response = requests.get(status_url, headers=headers, json=data)
         
         if status_response.status_code == 200:
@@ -103,7 +103,7 @@ while True:
                 if unlock_user == 'y':
                     for email in matches:
                         print("Login:", email)
-                        unlock_url = "https://fattmerchant.okta.com/api/v1/users/" + email + "/lifecycle/unlock"
+                        unlock_url = "https://redacted.okta.com/api/v1/users/" + email + "/lifecycle/unlock"
                         user_unlock_response = requests.post(unlock_url, headers=headers, json=data)
                         if status_response.status_code == 200:
                             print("Unlock Request successful!")
@@ -113,7 +113,7 @@ while True:
                     
     if menu_answer == '4':
         while True:
-            status_url = 'https://fattmerchant.okta.com/api/v1/users?filter=status eq "LOCKED_OUT"'
+            status_url = 'https://redacted.okta.com/api/v1/users?filter=status eq "LOCKED_OUT"'
             status_response = requests.get(status_url, headers=headers, json=data)
             
             if status_response.status_code == 200:
@@ -132,7 +132,7 @@ while True:
                 elif matches:
                     for email in matches:
                         print("Login:", email)
-                        unlock_url = "https://fattmerchant.okta.com/api/v1/users/" + email + "/lifecycle/unlock"
+                        unlock_url = "https://redacted.okta.com/api/v1/users/" + email + "/lifecycle/unlock"
                         user_unlock_response = requests.post(unlock_url, headers=headers, json=data)
                         if status_response.status_code == 200:
                             print("Unlock Request successful!")
